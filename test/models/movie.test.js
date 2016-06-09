@@ -4,10 +4,10 @@ const Movie = require('../../lib/models/movie');
 
 describe('movie model', () => {
 
-  describe('seralize', () => {
+  describe('serialize', () => {
 
     it('includes all of the necessary fields', () => {
-      const movie = Movie.forge().seralize();
+      const movie = Movie.forge().serialize();
 
       expect(movie).to.have.all.keys([
         'id',
