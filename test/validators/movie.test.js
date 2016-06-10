@@ -2,15 +2,16 @@
 
 const Joi = require('joi');
 
-const MovieValidator = require('../../lib/validators/movie');
+const MovieCreateValidator = require('../../lib/validators/movies/create');
+const MovieListValidator = require('../../lib/validators/movies/list');
 
-describe('movie validator', () => {
+describe('movie create validator', () => {
 
   describe('title', () => {
 
     it('is required', () => {
       const payload = {};
-      const result = Joi.validate(payload, MovieValidator);
+      const result = Joi.validate(payload, MovieCreateValidator);
 
       expect(result.error.details[0].path).to.eql('title');
       expect(result.error.details[0].type).to.eql('any.required');
@@ -18,7 +19,7 @@ describe('movie validator', () => {
 
     it('is not empty', () => {
       const payload = { title: '' };
-      const result = Joi.validate(payload, MovieValidator);
+      const result = Joi.validate(payload, MovieCreateValidator);
 
       expect(result.error.details[0].path).to.eql('title');
       expect(result.error.details[0].type).to.eql('any.empty')
@@ -26,7 +27,7 @@ describe('movie validator', () => {
 
     it('is less than 255 characters', () => {
       const payload = { title: 'a'.repeat(260) };
-      const result = Joi.validate(payload, MovieValidator);
+      const result = Joi.validate(payload, MovieCreateValidator);
 
       expect(result.error.details[0].path).to.eql('title');
       expect(result.error.details[0].type).to.eql('string.max')
@@ -41,7 +42,7 @@ describe('movie validator', () => {
         title: 'foo',
         release_year: 1800
       };
-      const result = Joi.validate(payload, MovieValidator);
+      const result = Joi.validate(payload, MovieCreateValidator);
 
       expect(result.error.details[0].path).to.eql('release_year');
       expect(result.error.details[0].type).to.eql('number.min')
@@ -52,10 +53,25 @@ describe('movie validator', () => {
         title: 'foo',
         release_year: 12345
       };
-      const result = Joi.validate(payload, MovieValidator);
+      const result = Joi.validate(payload, MovieCreateValidator);
 
       expect(result.error.details[0].path).to.eql('release_year');
       expect(result.error.details[0].type).to.eql('number.max')
+    });
+
+  });
+
+});
+
+describe('movie list validator', () => {
+
+  describe('release_year', () => {
+    it('is an integer', () => {
+      const payload = { release_year: 2000.4 };
+      const result = Joi.validate(payload, MovieListValidator);
+
+      expect(result.error.details[0].path).to.eql('release_year');
+      expect(result.error.details[0].type).to.eql('number.integer');
     });
 
   });

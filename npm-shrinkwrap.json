@@ -2323,6 +2323,11 @@
         }
       }
     },
+    "rosie": {
+      "version": "1.6.0",
+      "from": "rosie@*",
+      "resolved": "https://registry.npmjs.org/rosie/-/rosie-1.6.0.tgz"
+    },
     "run-async": {
       "version": "0.1.0",
       "from": "run-async@>=0.1.0 <0.2.0",

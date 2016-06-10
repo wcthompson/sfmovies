@@ -46,6 +46,7 @@
     "generate-changelog": "^1.0.0",
     "istanbul": "^0.4.2",
     "mocha": "^2.2.5",
-    "nodemon": "^1.9.2"
+    "nodemon": "^1.9.2",
+    "rosie": "^1.6.0"
   }
 }
