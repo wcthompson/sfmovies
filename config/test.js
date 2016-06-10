@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
+  DB_DEBUG: true,
   DB_HOST: 'localhost',
   DB_NAME: 'sfmovies_test',
   DB_PASSWORD: '',
